@@ -41,7 +41,7 @@ class Newmovie extends Component {
 
       this.source = axios.CancelToken.source();
 
-      const movieObject = {
+      const movie = {
         id: this.state.id,
         title: this.state.title,
         description: this.state.description,
