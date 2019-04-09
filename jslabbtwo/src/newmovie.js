@@ -50,17 +50,18 @@ class Newmovie extends Component {
         rating: this.state.rating
       }
 
-      axios.put(url + "/movies/" + id, {
+      axios.get(url + "/movies/" + id, {
         cancelToken: this.source.token,
-      })
-        .then(res => {
-          console.log(res)
-          this.setState({ redirect: true })
-        })
-        .catch(err => {
-          alert("Title must be between 1 and 40 characters, description between 1 and 300 characters, Rating between 0-5");
-        })
-    }
+      }) .catch(function (err) {
+        if (axios.isCancel(err)) {
+          console.log('Request canceled', err.message);
+        } else {
+    // handle error
+      }
+    });
+
+  }
+
 
 
 
