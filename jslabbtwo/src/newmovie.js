@@ -72,7 +72,7 @@ class Newmovie extends Component {
         <input className="input-director" name="director" type="text" placeholder='Director' onChange={(e)=> this.getinputvalue(e)}/>
         <textarea className="input-textarea" name="description" type="text" placeholder='Description' onChange={(e)=> this.getinputvalue(e)}></textarea>
         <input  className="input-rating" name="rating" type="number" placeholder='Rating' onChange={(e)=> this.getinputvalue(e)}/>
-        <button className="input-add"  onSubmit={this.OnCancel} onClick={(e) => this.click(e)}>Add</button>
+        <button className="input-add"  onClick={(e) => this.click(e), this.OnCancel}>Add</button>
       </form>
 
     );
