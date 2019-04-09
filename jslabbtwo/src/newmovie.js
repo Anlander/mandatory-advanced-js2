@@ -11,8 +11,7 @@ class Newmovie extends Component {
       description:"",
       rating:"",
       redirect:false,
-      error: null,
-      id: ""
+      error: null
     }
   }
 
@@ -38,8 +37,6 @@ class Newmovie extends Component {
     OnCancel(e) {
       e.preventDefault();
       const url = "http://ec2-13-53-132-57.eu-north-1.compute.amazonaws.com:3000"
-      const id = this.props.match.params.id;
-
       this.source = axios.CancelToken.source();
 
       const movie = {
@@ -50,18 +47,18 @@ class Newmovie extends Component {
         rating: this.state.rating
       }
 
-      axios.get(url + "/movies/" + id, {
+      axios.put(url + "/movies/", {
         cancelToken: this.source.token,
-      }) .catch(function (err) {
-        if (axios.isCancel(err)) {
-          console.log('Request canceled', err.message);
-        } else {
-    // handle error
-      }
-    });
-
-  }
-
+      })
+        .then(res => {
+          console.log(res)
+          this.setState({ redirect: true })
+        })
+        .catch(err => {
+          console.log(err)
+          alert("Title must be between 1 and 40 characters, description between 1 and 300 characters, Rating between 0-5");
+        })
+    }
 
 
 
@@ -73,7 +70,7 @@ class Newmovie extends Component {
         <input className="input-director" name="director" type="text" placeholder='Director' onChange={(e)=> this.getinputvalue(e)}/>
         <textarea className="input-textarea" name="description" type="text" placeholder='Description' onChange={(e)=> this.getinputvalue(e)}></textarea>
         <input  className="input-rating" name="rating" type="number" placeholder='Rating' onChange={(e)=> this.getinputvalue(e)}/>
-        <button className="input-add"  onClick={(e) => this.click(e), this.OnCancel}>Add</button>
+        <button className="input-add"  onClick={(e) => this.click(e)}>Add</button>
       </form>
 
     );
