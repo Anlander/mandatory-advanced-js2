@@ -30,15 +30,10 @@ class Newmovie extends Component {
         description:this.state.description,
         rating:this.state.rating,
       }
-      axios.post("http://ec2-13-53-132-57.eu-north-1.compute.amazonaws.com:3000/movies/",movie)
-      .then(res=>console.log(res))
-
       const url = "http://ec2-13-53-132-57.eu-north-1.compute.amazonaws.com:3000"
       this.source = axios.CancelToken.source();
 
-      axios.get(url + "/movies/", {
-        cancelToken: this.source.token,
-      })
+      axios.post("http://ec2-13-53-132-57.eu-north-1.compute.amazonaws.com:3000/movies/",movie)
         .then(res => {
           console.log(res)
         })
@@ -50,7 +45,6 @@ class Newmovie extends Component {
             return
           }
         })
-
     }
 
 
