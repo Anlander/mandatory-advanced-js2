@@ -11,7 +11,8 @@ class Newmovie extends Component {
       description:"",
       rating:"",
       redirect:false,
-      error: null
+      error: null,
+      id: ""
     }
   }
 
@@ -57,7 +58,6 @@ class Newmovie extends Component {
           this.setState({ redirect: true })
         })
         .catch(err => {
-          console.log(err)
           alert("Title must be between 1 and 40 characters, description between 1 and 300 characters, Rating between 0-5");
         })
     }
