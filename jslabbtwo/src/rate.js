@@ -40,7 +40,7 @@ class Rate extends Component {
         description:this.state.description,
         rating:this.state.rating
       }
-      axios.post("http://ec2-13-53-132-57.eu-north-1.compute.amazonaws.com:3000/movies/",movie)
+      axios.put(`http://ec2-13-53-132-57.eu-north-1.compute.amazonaws.com:3000/movies/${this.props.match.params.id}`,movie)
       .then(res=>console.log(res))
     }
   render(){
